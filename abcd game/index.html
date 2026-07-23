@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alphabet Learning Game</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Start Overlay (To handle audio context policy) -->
+    <div id="start-overlay" class="overlay active">
+        <div class="modal">
+            <h1>Alphabet Learning Fun!</h1>
+            <p>Ready to learn your ABCs?</p>
+            <button id="start-game-btn" class="primary-btn pulse">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Main Game Area -->
+    <div id="game-container" class="hidden">
+
+        <div class="top-bar">
+            <!-- Language Toggle Dropdown/Toggle -->
+            <div class="lang-toggle">
+                <span>Language: </span>
+                <select id="language-select">
+                    <option value="te-IN" selected>తెలుగు (Telugu)</option>
+                    <option value="en-US">English</option>
+                </select>
+                <button id="music-toggle-btn" class="icon-btn" aria-label="Toggle Music"
+                    style="margin-left: 10px;">🎵</button>
+                <button id="lock-btn" class="icon-btn" aria-label="Lock Screen" style="margin-left: 10px;"
+                    title="Lock Screen">🔓</button>
+            </div>
+
+            <div class="instruction-box">
+                <p id="instruction-text">Click to start!</p>
+                <button id="repeat-audio-btn" class="icon-btn" aria-label="Repeat Audio">🔊</button>
+            </div>
+        </div>
+
+        <!-- Scattered Letters Area -->
+        <div id="letters-area" class="letters-area">
+            <!-- Letters will be generated here by JS -->
+        </div>
+
+        <!-- Animal Character Popup -->
+        <div id="animal-character" class="character hidden">
+            <img src="file:///Users/vijayakumarkonduri/.gemini/antigravity/brain/58a926ea-da57-4d2f-a4b8-cafa6e137581/animal_character_1771846807222.png"
+                alt="Happy Animal!" class="animal-img">
+            <div id="animal-message" class="speech-bubble">Congratulations!</div>
+        </div>
+
+    </div>
+
+    <!-- Background Music Player -->
+    <audio id="bg-music">
+        <!-- Source is handled dynamically in script.js to loop through rhymes -->
+    </audio>
+
+    <!-- Screen Locked Resume Modal -->
+    <div id="resume-modal" class="overlay hidden" style="z-index: 1500; background: rgba(0,0,0,0.95); color: white;">
+        <div class="modal" style="background: transparent; border: none; box-shadow: none;">
+            <h1 style="color: white; font-size: 3rem; margin-bottom: 2rem;">Screen is Locked 🔒</h1>
+            <p style="color: white; font-size: 1.5rem; margin-bottom: 3rem;">Click resume to continue playing, or unlock
+                to exit.</p>
+            <button id="resume-btn" class="primary-btn pulse" style="margin-right: 20px;">Resume Game</button>
+            <button id="unlock-btn-from-resume" class="primary-btn"
+                style="background-color: #f44336; box-shadow: 0 6px 0 #d32f2f;">Unlock</button>
+        </div>
+    </div>
+
+    <!-- Parent Unlock Modal -->
+    <div id="unlock-modal" class="overlay hidden" style="z-index: 2000;">
+        <div class="modal pin-modal">
+            <h2>Parent Unlock</h2>
+            <p>Enter PIN (1234) to unlock screen</p>
+            <div class="pin-display" id="pin-display">_ _ _ _</div>
+            <div class="pin-pad">
+                <button class="pin-btn">1</button>
+                <button class="pin-btn">2</button>
+                <button class="pin-btn">3</button>
+                <button class="pin-btn">4</button>
+                <button class="pin-btn">5</button>
+                <button class="pin-btn">6</button>
+                <button class="pin-btn">7</button>
+                <button class="pin-btn">8</button>
+                <button class="pin-btn">9</button>
+                <button class="pin-btn pin-btn-action" id="pin-cancel">X</button>
+                <button class="pin-btn">0</button>
+                <button class="pin-btn pin-btn-action" id="pin-clear">C</button>
+            </div>
+            <p id="pin-error" style="color:red; font-size:1rem; min-height:1.5rem; margin-top: 10px;"></p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
